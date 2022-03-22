@@ -1,0 +1,14 @@
+mariadb:
+  user: root
+  pass: DocHQ
+  host: db
+  port: 3306
+
+redis:
+  host: redis
+  port: 6379
+  db: 0
+
+grpc:
+  host: localhost
+  port: 8080

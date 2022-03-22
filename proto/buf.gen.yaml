@@ -1,0 +1,20 @@
+version: v1
+plugins:
+  - name: go
+    out: gen/go
+    opt:
+      - paths=source_relative
+    strategy: directory
+  - name: go-grpc
+    out: gen/go
+    opt:
+      - paths=source_relative
+    strategy: directory
+  - name: grpc-gateway
+    out: gen/go
+    opt:
+      - paths=source_relative
+    strategy: directory
+  - name: openapiv2
+    out: gen/openapiv2
+    strategy: directory

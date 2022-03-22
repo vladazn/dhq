@@ -1,0 +1,48 @@
+version: "3.3"
+services:
+  db:
+    image: mariadb:10.6
+    networks:
+      - dhq.net
+    restart: always
+    ports:
+      - "3308:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: DocHQ
+  service:
+    networks:
+      - dhq.net
+    restart: always
+    image: vladazn/dhq/service:test
+    depends_on:
+      - redis
+      - db
+  swagger:
+    networks:
+      - dhq.net
+    restart: always
+    image: vladazn/dhq/swagger:test
+    environment:
+      - HOST=localhost:8088
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+  api:
+    networks:
+      - dhq.net
+    restart: always
+    image: vladazn/dhq/api:test
+    ports:
+      - "8088:8080"
+    depends_on:
+      - service
+  redis:
+    networks:
+      - dhq.net
+    image: redis
+    entrypoint:
+      - /usr/local/bin/redis-server
+networks:
+  dhq.net:
+    driver: bridge

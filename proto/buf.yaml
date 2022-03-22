@@ -1,0 +1,9 @@
+version: v1
+name: buf.build/dhq/protos
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/grpc-ecosystem/grpc-gateway
+build:
+  excludes:
+    - proto/google
+    - proto/protoc-gen-openapiv2
